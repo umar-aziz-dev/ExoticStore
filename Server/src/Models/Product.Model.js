@@ -1,0 +1,52 @@
+import mongoose, { Schema } from "mongoose";
+
+const ProductSchema = new Schema({
+    img: {
+        type: String,
+        required: true,
+    },
+
+    video: {
+        type: String, // video URL or uploaded file path
+    },
+
+    title: {
+        type: String,
+        required: true,
+    },
+
+    price: {
+        type: Number,
+        required: true,
+    },
+
+    saleprice: {
+        type: Number
+    },
+
+    description: {
+        type: String,
+    },
+
+    sellername: {
+        type: String,
+        required: true,
+    },
+
+    sellerwatsapp: {
+        type: String,
+        required: true
+    },
+
+    sold: {
+        type: String,
+        enum: ["Available", "Sold"],
+        default: "Available"
+    }
+
+}, {
+    timestamps: true
+});
+
+const Product = mongoose.model("Product", ProductSchema);
+export default Product;
