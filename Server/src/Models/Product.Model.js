@@ -1,8 +1,12 @@
 import mongoose, { Schema } from "mongoose";
 
 const ProductSchema = new Schema({
-    img: {
+    characterid: {
         type: String,
+        required: true,
+    },
+    img: {
+        type: [String],
         required: true,
     },
 
@@ -42,7 +46,39 @@ const ProductSchema = new Schema({
         type: String,
         enum: ["Available", "Sold"],
         default: "Available"
-    }
+    },
+
+    purchasedprice: {
+        type: String
+    },
+
+
+    boughtfrom: {
+        type: String
+    },
+    accountemail: {
+        type: String
+    },
+    accountnumber: {
+        type: String
+    },
+    warrentygot: {
+        type: String
+    },
+
+    buyername: {
+        type: String
+    },
+    buyeremail: {
+        type: String
+    },
+    buyernumber: {
+        type: String
+    },
+    warrentygiven: {
+        type: String
+    },
+
 
 }, {
     timestamps: true

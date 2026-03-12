@@ -14,6 +14,10 @@ const UserSchema = new Schema({
         unique: true,
         lowercase: true,
     },
+    phone:{
+        type:String,
+        required:true
+    },
     password: {
         type: String,     // ✅ fixed
         minlength: 8        // ✅ fixed

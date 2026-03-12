@@ -35,17 +35,8 @@ export const SellerSidebar = ({ open, setopen }) => {
   return (
     <div>
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex flex-col gap-4 bg-[#6f2232] w-64 min-h-screen p-4">
+      <div className="hidden md:flex flex-col gap-4 bg-[#6f2232] w-64 h-screen p-4">
         <SidebarItems navigate={navigate} />
-
-        {/* Logout Button */}
-        <div
-          onClick={handleLogout}
-          className="flex items-center gap-3 text-white p-3 mt-auto rounded-md cursor-pointer hover:bg-red-600 transition"
-        >
-          <LogOut className="w-5 h-5" />
-          <span>Logout</span>
-        </div>
       </div>
 
       {/* Mobile Sheet */}

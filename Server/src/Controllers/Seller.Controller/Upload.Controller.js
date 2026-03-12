@@ -1,4 +1,5 @@
-import { imageuploader } from "../../Middleware/Multer.js";
+
+import { imageuploader } from "../../Middleware/Image.multer.js";
 import ApiResponse from "../../Utils/ApiResponse.js";
 
 export const Upload = async (req, res) => {
@@ -24,3 +25,4 @@ export const Upload = async (req, res) => {
     return res.status(500).json(new ApiResponse(401, error, "Cannot upload images"));
   }
 };
+

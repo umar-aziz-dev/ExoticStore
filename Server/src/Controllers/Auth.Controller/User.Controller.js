@@ -10,7 +10,7 @@ import AsyncHandler from "../../Utils/AsyncHandler.js";
 
 
 export const SignupUser = AsyncHandler(async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, phone,email, password } = req.body;
     if (!username || !email || !password) {
         throw new ApiError(400, "All fields are required");
     }
@@ -25,6 +25,7 @@ export const SignupUser = AsyncHandler(async (req, res) => {
     const user = new User({
         username,
         email,
+        phone,
         password: hashPassword,
     })
     await user.save();

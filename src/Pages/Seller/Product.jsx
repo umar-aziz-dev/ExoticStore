@@ -2,80 +2,74 @@ import Commonform from "@/Common/form";
 import { ProductForm } from "@/Common/option";
 import { Button } from "@/Components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/Components/ui/sheet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductImageView from "./ProductImageView";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { deleteProduct, editProduct, fetchProduct } from "@/Store/SelllerSlice";
+import { ProductTile } from "./ProductTile";
+import { toast } from "sonner";
 
 export const SellerProduct = () => {
 
-    const initialState = {
-        img: "",
-        video: "",
-        title: "",
-        price: "",
-        saleprice: "",
-        description: "",
-        sellername: "",
-        sellerwatsapp: "",
-    };
 
-    const [open, setopen] = useState(false);
-    const [formData, setformData] = useState(initialState);
-    const [imageurl, setimageurl] = useState([]);
-    const [imageview, setimageview] = useState([]);
     const { productList, isloading } = useSelector((state) => state.Product);
     const [isEditId, setisEditId] = useState(null);
 
-    function handleOpen() {
-        setopen(true);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    // ✅ Correct useEffect
+    useEffect(() => {
+        dispatch(fetchProduct());
+    }, [dispatch]);
+
+    function handleDelete(productid) {
+        dispatch(deleteProduct(productid)).then((res) => {
+            if (res.payload?.success) {
+                toast.success(res.message || "Account deleted")
+                dispatch(fetchProduct())
+            }
+        }).catch((e) => {
+            toast.error(e.message || "Failed to Delete Product")
+        })
     }
 
-    function OnSubmit(e) {
-        e.preventDefault();
-        console.log(formData); // for testing
+    function handleEdit(productid){
+        dispatch(editProduct())
     }
+
 
     return (
-        <div>
+        <div className="p-6">
 
-            <div className="flex justify-between p-4 m-4">
-                <h1>All Products</h1>
-                <p>3 Products</p>
+            {/* Header */}
+            <div className="flex justify-between items-center mb-6">
+                <h1 className="text-2xl font-bold">All Products</h1>
+                <p className="text-gray-500">{productList?.length} Products</p>
             </div>
 
+            {/* Add Product Button */}
             <Button
-                onClick={handleOpen}
-                className="bg-[#6f2232] text-white"
+                onClick={() => navigate("/seller/addproduct")}
+                className="bg-[#6f2232] text-white mb-6"
             >
                 Add New Product
             </Button>
 
-            <Sheet open={open} onOpenChange={setopen}>
-                <SheetContent className="overflow-y-auto w-80 bg-white">
-                    <SheetHeader>
-                        <SheetTitle>
-                            Add New Product
-                        </SheetTitle>
-                    </SheetHeader>
-
-                    <ProductImageView
-                        setimageurl={setimageurl}
-                        setimageview={setimageview}
-                        imageview={imageview}
-                        isloading={isloading}
-                        isEditId={isEditId}
-                    />
-
-                    <Commonform
-                        formControls={ProductForm}
-                        FormData={formData}
-                        setFormData={setformData}
-                        buttonText={"Add Product"}
-                        onSubmit={OnSubmit}
-                    />
-
-                </SheetContent>
-            </Sheet>
+            {/* Product Grid */}
+            {/* Product Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                {
+                    Array.isArray(productList) &&
+                    productList
+                        .filter((product) => product.sold === "Available")
+                        .map((product) => (
+                            <ProductTile key={product._id} onEdit={handleEdit} onDelete={handleDelete} Product={product} />
+                        ))
+                }
+            </div>
 
         </div>
     );

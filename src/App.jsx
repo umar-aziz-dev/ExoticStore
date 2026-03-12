@@ -23,6 +23,8 @@ import { AdminCreate } from "./Pages/SuperAdmin/AdminCreate"
 import { PolicyCreation } from "./Pages/SuperAdmin/PolicyCreation"
 import { CustomerSupport } from "./Pages/SuperAdmin/CustomerSupport"
 import { Analytics } from "./Pages/SuperAdmin/Analytics"
+import { AddProduct } from "./Pages/Seller/AddProduct"
+import { ProductDetails } from "./Pages/Seller/ProductDetails"
 
 
 function App() {
@@ -50,6 +52,8 @@ function App() {
           <Route path="dashboard" element={<SellerDashboard />} />
           <Route path="product" element={<SellerProduct />} />
           <Route path="order" element={<SellerOrder />} />
+          <Route path="addproduct" element={<AddProduct/>}/>
+          <Route path="productdetails/:id" element={<ProductDetails/>}/>
         </Route>
         <Route path="/superadmin" element={<CheckAuth User={User} isAuthenticated={isAuthenticated}><SuperLayout /></CheckAuth>}>
           <Route path="admincreate" element={<AdminCreate />} />

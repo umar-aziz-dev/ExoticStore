@@ -38,26 +38,32 @@ export const NavbarIconforsm = [
     }
 ]
 export const SignupForm = [
-    {
+     {
         name: "username",
         label: "Username",
         componenettype: "Input",
         type: "text",
-        placeholder: "Username"
+        placeholder: "example"
+    },{
+        name: "phone",
+        label: "Phone",
+        componenettype: "Input",
+        type: "tel",
+        placeholder: "+92 300 1234567"
     },
     {
         name: "email",
         label: "Email",
         componenettype: "Input",
         type: "text",
-        placeholder: "Email"
+        placeholder: "you@example.com"
     },
     {
         name: "password",
         label: "Password",
         componenettype: "Input",
         type: "text",
-        placeholder: "Password"
+        placeholder: "Min 8 Word"
     },
 ]
 export const SigninForm = [
@@ -114,6 +120,20 @@ export const AdminCreateForm = [
 
 export const ProductForm = [
     {
+        name: "characterid",
+        label: "Character ID",
+        componenettype: "Input",
+        type: "text",
+        placeholder: "Enter Character ID"
+    },
+    {
+        name: "video",
+        label: "Video Link",
+        componenettype: "Input",
+        type: "text",
+        placeholder: "Enter Video Link"
+    },
+    {
         name: "title",
         label: "Title",
         componenettype: "Input",
@@ -141,18 +161,73 @@ export const ProductForm = [
         placeholder: "Enter product description"
     },
     {
-        name: "sellername",
-        label: "Seller Name",
+        name: "purchasedprice",
+        label: "Purchased Price",
         componenettype: "Input",
         type: "text",
-        placeholder: "Enter seller name"
+        placeholder: "Enter Purchased price"
+    },
+
+
+
+
+    {
+        name: "boughtfrom",
+        label: "Purchased from",
+        componenettype: "Input",
+        type: "text",
+        placeholder: "Enter Seller Name"
     },
     {
-        name: "sellerwatsapp",
-        label: "Seller WhatsApp",
+        name: "accountemail",
+        label: "Account Email",
+        componenettype: "Input",
+        type: "text",
+        placeholder: "you@example.com"
+    },
+    {
+        name: "accountnumber",
+        label: "Account Number",
         componenettype: "Input",
         type: "tel",
-        placeholder: "Enter WhatsApp number"
-    }
+        placeholder: "Enter Account Number"
+    },
+    {
+        name: "warrentygot",
+        label: "Warrenty of Account",
+        componenettype: "Input",
+        placeholder: "Enter Account Warrenty"
+    },
+
 ];
+
+export const SoldForm = [
+    {
+        name: "buyername",
+        label: "Buyer Name",
+        componenettype: "Input",
+        type: "text",
+        placeholder: "Enter Buyer Name"
+    },
+    {
+        name: "buyeremail",
+        label: "Buyer Account Email",
+        componenettype: "Input",
+        type: "text",
+        placeholder: "you@example.com"
+    },
+    {
+        name: "buyernumber",
+        label: "Buyer Account Number",
+        componenettype: "Input",
+        type: "tel",
+        placeholder: "Enter Buyer Number"
+    },
+    {
+        name: "warrentygiven",
+        label: "Warrenty of Account given",
+        componenettype: "Input",
+        placeholder: "Enter Account Warrenty given"
+    },
+]
 
