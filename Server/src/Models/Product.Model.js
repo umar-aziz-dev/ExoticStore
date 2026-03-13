@@ -44,7 +44,6 @@ const ProductSchema = new Schema({
 
     sold: {
         type: String,
-        enum: ["Available", "Sold"],
         default: "Available"
     },
 
@@ -54,29 +53,33 @@ const ProductSchema = new Schema({
 
 
     boughtfrom: {
-        type: String
+        type: String,
+
     },
     accountemail: {
-        type: String
+        type: String,
+
     },
     accountnumber: {
-        type: String
+        type: String,
+
     },
     warrentygot: {
-        type: String
+        type: String,
+
     },
 
     buyername: {
-        type: String
+        type: String, default: "empty"
     },
     buyeremail: {
-        type: String
+        type: String, default: "empty"
     },
     buyernumber: {
-        type: String
+        type: String, default: "empty"
     },
     warrentygiven: {
-        type: String
+        type: String, default: "empty"
     },
 
 

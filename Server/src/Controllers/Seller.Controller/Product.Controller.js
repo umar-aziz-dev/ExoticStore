@@ -208,3 +208,47 @@ export const fetchSingleProduct = async (req, res) => {
       .json(new ApiResponse(500, error.message, "Cannot fetch Account"));
   }
 }
+
+export const UpdateStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res
+        .status(404)
+        .json(new ApiResponse(404, null, "id required..!"));
+    }
+
+    const { sold, buyername, buyeremail, buyernumber, warrentygiven } = req.body;
+    if (!sold || !buyername || !buyeremail || !buyernumber || !warrentygiven) {
+      return res
+        .status(404)
+        .json(new ApiResponse(404, null, "All Fields Are Required"));
+    }
+
+    const product = await Product.findByIdAndUpdate(
+  id,
+  {
+    sold,
+    buyername,
+    buyeremail,
+    buyernumber,
+    warrentygiven,
+  },
+  { new: true } // This ensures the updated document is returned
+);
+    if (!product) {
+      return res
+        .status(404)
+        .json(new ApiResponse(404, null, "Cannot Find Product"));
+    }
+
+    res.status(200).json(
+      new ApiResponse(201, product, "Status Updated Successfully")
+    )
+  } catch (error) {
+    res
+      .status(500)
+      .json(new ApiResponse(500, error.message, "Cannot update the status"));
+  }
+}
+

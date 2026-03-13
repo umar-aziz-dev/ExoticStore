@@ -38,13 +38,13 @@ export const NavbarIconforsm = [
     }
 ]
 export const SignupForm = [
-     {
+    {
         name: "username",
         label: "Username",
         componenettype: "Input",
         type: "text",
         placeholder: "example"
-    },{
+    }, {
         name: "phone",
         label: "Phone",
         componenettype: "Input",
@@ -202,6 +202,17 @@ export const ProductForm = [
 ];
 
 export const SoldForm = [
+    
+  {
+    name: "sold",
+    label: "Status",
+    placeholder: "Update the Status",
+    componenttype: "Select",
+    options: [
+      { label: "Avalible", value: "Avalible" },
+      { label: "Sold", value: "Sold" },
+    ],
+  },
     {
         name: "buyername",
         label: "Buyer Name",
@@ -221,7 +232,7 @@ export const SoldForm = [
         label: "Buyer Account Number",
         componenettype: "Input",
         type: "tel",
-        placeholder: "Enter Buyer Number"
+        placeholder: "+92 123456789"
     },
     {
         name: "warrentygiven",

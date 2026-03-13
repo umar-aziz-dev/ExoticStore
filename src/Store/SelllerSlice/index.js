@@ -6,6 +6,8 @@ const initialState = {
     isloading: false,
     productList: [],
     singleProduct: null,
+    soldProduct: [],
+    singleSoldProduct: null,
 }
 
 export const AddProducts = createAsyncThunk("/seller/product/add",
@@ -48,6 +50,29 @@ export const deleteProduct = createAsyncThunk("/seller/product/delete",
     }
 )
 
+export const UpdateStatus = createAsyncThunk("/seller/soldproducts",
+    async ({ id, formdata }) => {
+        const result = await axios.post(`http://localhost:5000/seller/soldproducts/${id}`,
+            formdata
+        )
+        return result.data
+    }
+)
+
+export const fetchSoldProducts = createAsyncThunk("/seller/soldproducts/soldproductview/get",
+    async () => {
+        const result = await axios.get("http://localhost:5000/seller/soldproducts/soldproductview/get")
+        return result.data;
+    }
+)
+
+export const fetchSingleSoldProduct = createAsyncThunk("/seller/soldproducts/soldproductdetails/get",
+    async (id) => {
+        const result = await axios.get(`http://localhost:5000/seller/soldproducts/soldproductdetails/get/${id}`)
+        return result.data
+    }
+)
+
 const ProductSlice = createSlice({
     name: "Product",
     initialState,
@@ -77,6 +102,30 @@ const ProductSlice = createSlice({
         }).addCase(fetchSingleProduct.rejected, (state) => {
             state.isloading = false;
             state.singleProduct = null;
+        }).addCase(UpdateStatus.pending, (state) => {
+            state.isloading = true;
+        }).addCase(UpdateStatus.fulfilled, (state, action) => {
+            state.isloading = false;
+            state.soldProduct = action.payload.data;
+        }).addCase(UpdateStatus.rejected, (state) => {
+            state.isloading = false;
+            state.soldProduct = [];
+        }).addCase(fetchSoldProducts.pending, (state) => {
+            state.isloading = true;
+        }).addCase(fetchSoldProducts.fulfilled, (state, action) => {
+            state.isloading = false;
+            state.soldProduct = action.payload.data;
+        }).addCase(fetchSoldProducts.rejected, (state) => {
+            state.isloading = false;
+            state.soldProduct = [];
+        }).addCase(fetchSingleSoldProduct.pending, (state) => {
+            state.isloading = true;
+        }).addCase(fetchSingleSoldProduct.fulfilled, (state, action) => {
+            state.isloading = false;
+            state.singleSoldProduct = action.payload.data;
+        }).addCase(fetchSingleSoldProduct.rejected, (state) => {
+            state.isloading = false;
+            state.singleSoldProduct = null;
         })
     }
 })

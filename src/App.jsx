@@ -15,7 +15,7 @@ import { SellerOrder } from "./Pages/Seller/Order"
 import { Auth } from "./Components/Auth/Layout"
 import CheckAuth from "./Config/auth"
 import { useSelector } from "react-redux"
-import {  UserSellAccount } from "./Pages/User/SellAccount"
+import { UserSellAccount } from "./Pages/User/SellAccount"
 import { ForgotPassword } from "./Pages/Auth/ForgotPassword"
 import { ResetPassword } from "./Pages/Auth/ResetPassword"
 import { SuperLayout } from "./Components/superadmin/SuperLayout"
@@ -25,6 +25,9 @@ import { CustomerSupport } from "./Pages/SuperAdmin/CustomerSupport"
 import { Analytics } from "./Pages/SuperAdmin/Analytics"
 import { AddProduct } from "./Pages/Seller/AddProduct"
 import { ProductDetails } from "./Pages/Seller/ProductDetails"
+import { SoldProducts } from "./Pages/Seller/SoldProducts"
+import { SoldProductView } from "./Pages/Seller/SoldProductView"
+import { SoldProductDetails } from "./Pages/Seller/SoldProductDetails"
 
 
 function App() {
@@ -52,8 +55,11 @@ function App() {
           <Route path="dashboard" element={<SellerDashboard />} />
           <Route path="product" element={<SellerProduct />} />
           <Route path="order" element={<SellerOrder />} />
-          <Route path="addproduct" element={<AddProduct/>}/>
-          <Route path="productdetails/:id" element={<ProductDetails/>}/>
+          <Route path="addproduct" element={<AddProduct />} />
+          <Route path="productdetails/:id" element={<ProductDetails />} />
+          <Route path="soldproducts/:id" element={<SoldProducts />} />
+          <Route path="soldproductview" element={<SoldProductView />} />
+           <Route path="soldproductdetails/:id" element={<SoldProductDetails />} />
         </Route>
         <Route path="/superadmin" element={<CheckAuth User={User} isAuthenticated={isAuthenticated}><SuperLayout /></CheckAuth>}>
           <Route path="admincreate" element={<AdminCreate />} />

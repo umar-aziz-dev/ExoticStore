@@ -1,20 +1,18 @@
 import { Button } from "@/Components/ui/button";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export const ProductTile = ({ Product, onDelete, onEdit }) => {
-  const dispatch = useDispatch();
+export const SoldProductTile = ({ Product }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group w-full max-w-sm">
+    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group w-full">
 
       {/* Image Section */}
       <div className="relative h-60 w-full overflow-hidden">
 
         {/* Sold / Available Badge */}
         {Product.sold && (
-          <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full z-10">
+          <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full z-10">
             {Product.sold}
           </span>
         )}
@@ -48,46 +46,26 @@ export const ProductTile = ({ Product, onDelete, onEdit }) => {
         {/* Price */}
         <div className="flex items-center gap-3">
           <p className="text-lg font-bold text-green-600">
-            ${Product.saleprice}
+            ${Product.saleprice || Product.price}
           </p>
-          <p className="text-sm text-gray-400 line-through">
-            ${Product.price}
-          </p>
+
+          {Product.saleprice && (
+            <p className="text-sm text-gray-400 line-through">
+              ${Product.price}
+            </p>
+          )}
         </div>
 
         {/* Buttons */}
-        <div className="grid grid-cols-2 gap-2 pt-2">
-
+        <div className="pt-2">
           <Button
-            onClick={() => navigate(`/seller/productdetails/${Product._id}`)}
+            onClick={() =>
+              navigate(`/seller/soldproductdetails/${Product._id}`)
+            }
             className="w-full"
           >
-            View
+            View Details
           </Button>
-
-          <Button
-            onClick={() => onDelete(Product._id)}
-            variant="destructive"
-            className="w-full"
-          >
-            Delete
-          </Button>
-
-          <Button
-            onClick={() => navigate("/seller/addproduct", { state: { product: Product } })}
-            variant="secondary"
-            className="w-full"
-          >
-            Edit
-          </Button>
-
-          <Button
-            onClick={() => navigate(`/seller/soldproducts/${Product._id}`)}
-            className="w-full bg-yellow-500 hover:bg-yellow-600"
-          >
-            Sold
-          </Button>
-
         </div>
 
       </div>

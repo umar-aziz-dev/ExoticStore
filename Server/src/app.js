@@ -5,6 +5,7 @@ import userRouter from "./Routes/Auth.Routes/User.Route.js";
 import superRouter from "./Routes/SuperAdmin.Routes/SuperAdmin.Routes.js";
 import productRouter from "./Routes/Seller.Routes/Product.Routes.js";
 import uploadRouter from "./Routes/Seller.Routes/Upload.Routes.js"
+import soldRouter from "./Routes/Seller.Routes/Sold.Routes.js"
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.use("/auth", userRouter);
 app.use("/superadmin/admincreate", superRouter);
 app.use("/seller/product", productRouter); 
+app.use("/seller/soldproducts",soldRouter)
 app.use("/seller/api",uploadRouter)
 
 export default app;

@@ -51,12 +51,18 @@ export const SellerProduct = () => {
             </div>
 
             {/* Add Product Button */}
-            <Button
+            <div>
+                <Button
                 onClick={() => navigate("/seller/addproduct")}
                 className="bg-[#6f2232] text-white mb-6"
             >
-                Add New Product
+                Add New Account
             </Button>
+            <Button
+            onClick={()=>navigate("/seller/soldproductview")}>
+                View Sold Accounts
+            </Button>
+            </div>
 
             {/* Product Grid */}
             {/* Product Grid */}

@@ -2,11 +2,11 @@ import { Input } from "@/Components/ui/input";
 import { Textarea } from "@/Components/ui/textarea";
 import { Label } from "@/Components/ui/label";
 import { Button } from "@/Components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "../Components/ui/select";
- 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../Components/ui/select";
 
 
-export default function Commonform({ formControls, onSubmit,FormData, setFormData, isDisabled, buttonText }) {
+
+export default function Commonform({ formControls, onSubmit, FormData, setFormData, isDisabled, buttonText }) {
     const Type = {
         INPUT: "Input",
         SELECT: "Select",
@@ -39,20 +39,21 @@ export default function Commonform({ formControls, onSubmit,FormData, setFormDat
                         }
                         value={value || ""}
                     >
-                        <SelectTrigger>
-                            <SelectValue placeholder={controlitems.placeholder}></SelectValue>
+                        <SelectTrigger className="w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-900">
+                            <SelectValue placeholder={controlitems.placeholder} />
                         </SelectTrigger>
-                        <SelectContent>
-                            {
-                                controlitems.options && controlitems.options.length > 0
-                                    ? controlitems.options.map((items) => (<SelectItem key={items.value} value={items.value}>
+
+                        <SelectContent className="bg-white border border-gray-300 rounded-md shadow-lg">
+                            {controlitems.options &&
+                                controlitems.options.map((items) => (
+                                    <SelectItem key={items.value} value={items.value}>
                                         {items.label}
-                                    </SelectItem>)) : null
-                            }
+                                    </SelectItem>
+                                ))}
                         </SelectContent>
                     </Select>
                 )
-                   break;
+                break;
 
             case Type.TEXTAREA:
                 element = (
@@ -90,12 +91,12 @@ export default function Commonform({ formControls, onSubmit,FormData, setFormDat
 
 
     return (
-       <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
             <div className="flex flex-col gap-2">
                 {formControls.map((controlitems) => (
                     <div className="grid w-full gap-1.5" key={controlitems.name}>
                         <Label>{controlitems.label}</Label>
-                        { formHandler(controlitems)}
+                        {formHandler(controlitems)}
                     </div>
                 ))}
             </div>
