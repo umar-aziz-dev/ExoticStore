@@ -10,7 +10,7 @@ export default function Commonform({ formControls, onSubmit, FormData, setFormDa
     const Type = {
         INPUT: "Input",
         SELECT: "Select",
-        TEXTAREA: "textarea",
+        TEXTAREA: "Textarea",
     }
     function formHandler(controlitems) {
         const value = FormData[controlitems.name];

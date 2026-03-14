@@ -9,24 +9,48 @@ import {
 } from "../ui/dropdown-menu";
 import { useDispatch, useSelector } from "react-redux";
 import { SignOutUser } from "@/Store/UserSlice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 import { Button } from "../ui/button";
-import log from "../../assets/log.png"
+import log from "../../assets/log.png";
 
 export const UserHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   function handleLogout() {
     dispatch(SignOutUser());
-    setOpen(false)
+    setOpen(false);
   }
 
+  // Detect Scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="w-full bg-white shadow-md sticky top-0 z-50">
+    <header
+      className={`w-full sticky top-0 z-50 transition-all duration-300
+      ${
+        scrolled
+          ? "bg-white/40 backdrop-blur-lg shadow-sm border-b border-gray-200"
+          : "bg-white shadow-md"
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
         {/* Logo */}
@@ -67,10 +91,13 @@ export const UserHeader = () => {
                 </p>
               ))}
             </nav>
-            <p onClick={handleLogout} className="mt-5 text-gray-700 font-medium cursor-pointer hover:text-[#6f2232] transition">
+
+            <p
+              onClick={handleLogout}
+              className="mt-5 text-gray-700 font-medium cursor-pointer hover:text-[#6f2232] transition"
+            >
               Logout
             </p>
-
           </SheetContent>
         </Sheet>
 
@@ -89,44 +116,46 @@ export const UserHeader = () => {
 
         {/* Desktop Icons */}
         <div className="hidden md:flex items-center gap-5">
-          {
-            !isAuthenticated && (
-              <Button onClick={() => navigate("/auth/signin")} className="bg-[#6f2232] text-white">SignIn</Button>
-            )
-          }
+
+          {!isAuthenticated && (
+            <Button
+              onClick={() => navigate("/auth/signin")}
+              className="bg-[#6f2232] text-white"
+            >
+              SignIn
+            </Button>
+          )}
 
           <ShoppingCart
             onClick={() => navigate("/shoppingView/cart")}
             className="cursor-pointer text-gray-700 hover:text-[#6f2232] transition"
           />
 
-          {
-            isAuthenticated && (
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <User className="cursor-pointer text-gray-700 hover:text-[#6f2232] transition" />
-                </DropdownMenuTrigger>
+          {isAuthenticated && (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <User className="cursor-pointer text-gray-700 hover:text-[#6f2232] transition" />
+              </DropdownMenuTrigger>
 
-                <DropdownMenuContent>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => navigate("/user/account")}
-                  >
-                    Account
-                  </DropdownMenuItem>
+              <DropdownMenuContent>
+                <DropdownMenuItem
+                  className="cursor-pointer"
+                  onClick={() => navigate("/user/account")}
+                >
+                  Account
+                </DropdownMenuItem>
 
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            )
-          }
+                <DropdownMenuItem
+                  className="cursor-pointer"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+
         </div>
-
       </div>
     </header>
   );

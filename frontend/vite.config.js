@@ -4,9 +4,13 @@ import path from "path"
 
 export default defineConfig({
   plugins: [react()],
-   server: {
+  
+  base: './', // ✅ ensures relative paths for Vercel deployment
+
+  server: {
     port: 5173
   },
+  
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

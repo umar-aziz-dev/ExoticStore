@@ -73,14 +73,14 @@ export const SigninForm = [
         label: "Email",
         componenettype: "Input",
         type: "text",
-        placeholder: "Email"
+        placeholder: "you@example.com"
     },
     {
         name: "password",
         label: "Password",
         componenettype: "Input",
         type: "text",
-        placeholder: "Password"
+        placeholder: "********"
     },
 ]
 export const ForgotPassForm = [
@@ -122,48 +122,48 @@ export const ProductForm = [
     {
         name: "characterid",
         label: "Character ID",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "text",
         placeholder: "Enter Character ID"
     },
     {
         name: "video",
         label: "Video Link",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "text",
         placeholder: "Enter Video Link"
     },
     {
         name: "title",
         label: "Title",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "text",
         placeholder: "Enter product title"
     },
     {
         name: "price",
         label: "Price",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "number",
         placeholder: "Enter price"
     },
     {
         name: "saleprice",
         label: "Sale Price",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "number",
         placeholder: "Enter sale price"
     },
     {
         name: "description",
         label: "Description",
-        componenettype: "Textarea",
+        componenttype: "Textarea",
         placeholder: "Enter product description"
     },
     {
         name: "purchasedprice",
         label: "Purchased Price",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "text",
         placeholder: "Enter Purchased price"
     },
@@ -174,28 +174,28 @@ export const ProductForm = [
     {
         name: "boughtfrom",
         label: "Purchased from",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "text",
         placeholder: "Enter Seller Name"
     },
     {
         name: "accountemail",
         label: "Account Email",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "text",
         placeholder: "you@example.com"
     },
     {
         name: "accountnumber",
         label: "Account Number",
-        componenettype: "Input",
+        componenttype: "Input",
         type: "tel",
         placeholder: "Enter Account Number"
     },
     {
         name: "warrentygot",
         label: "Warrenty of Account",
-        componenettype: "Input",
+        componenttype: "Input",
         placeholder: "Enter Account Warrenty"
     },
 

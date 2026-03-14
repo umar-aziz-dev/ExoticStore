@@ -85,7 +85,7 @@ export const editProduct = async (req, res) => {
     if (!id) {
       return res
         .status(400)
-        .json(new ApiResponse(400, null, "No product exists"));
+        .json(new ApiResponse(400, null, "id required"));
     }
 
     const {
