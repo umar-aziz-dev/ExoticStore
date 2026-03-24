@@ -15,14 +15,21 @@ export const Signin = () => {
 
     function OnSubmit(e) {
         e.preventDefault();
-        dispatch(SignInUser(FormData)).unwrap().then((res) => {
-            if (res.success) {
-                toast.success(res.message || "User Signin Successfully")
-            }
 
-        }).catch((err) => {
-            toast.error(err.message || "Failed to Signin the Account")
-        })
+        dispatch(SignInUser(FormData))
+            .unwrap()
+            .then((res) => {
+                // res contains API response from backend
+                if (res.success) {
+                    toast.success(res.message || "User signed in successfully");
+                } else {
+                    toast.error(res.message || "Failed to sign in");
+                }
+            })
+            .catch((err) => {
+                // err comes from rejectWithValue from the thunk
+                toast.error(err.message || "Failed to sign in the account");
+            });
     }
 
     function handlesignup() {
@@ -34,12 +41,12 @@ export const Signin = () => {
     }
 
     const handleSuccess = (credentialResponse) => {
-        dispatch(SigninGoogle(credentialResponse.credential)).then((res)=>{
-            if(res.success){
-                toast.success(res.message||"Login With Google")
+        dispatch(SigninGoogle(credentialResponse.credential)).then((res) => {
+            if (res.success) {
+                toast.success(res.message || "Login With Google")
             }
-        }).catch((err)=>{
-            toast.error(err.message||"Failed to Login with Google")
+        }).catch((err) => {
+            toast.error(err.message || "Failed to Login with Google")
         });
     };
 
@@ -63,13 +70,13 @@ export const Signin = () => {
                     buttonClassName="!bg-black !hover:bg-gray-800 text-white py-2 rounded-xl w-full"
                 />
 
-              <div className="mt-3">
-                  <GoogleLogin
-                   
-                    onSuccess={handleSuccess}
-                    onError={handleError}
-                />
-              </div>
+                <div className="mt-3">
+                    <GoogleLogin
+
+                        onSuccess={handleSuccess}
+                        onError={handleError}
+                    />
+                </div>
 
                 <p className="mt-4 text-center text-gray-600">
                     No Account?{" "}

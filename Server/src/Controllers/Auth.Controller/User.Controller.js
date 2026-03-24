@@ -12,12 +12,15 @@ import AsyncHandler from "../../Utils/AsyncHandler.js";
 export const SignupUser = AsyncHandler(async (req, res) => {
     const { username, phone,email, password } = req.body;
     if (!username || !email || !password) {
-        throw new ApiError(400, "All fields are required");
+        return res.status(401).json(
+            new ApiResponse(400, null,"All fields are required"));
     }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-        throw new ApiError(400, "Email already exists");
+        return res.status(401).json(
+            new ApiResponse(400,null,"Email Already Exists")
+        )
     }
 
 
@@ -47,8 +50,8 @@ export const SigninUser = async (req, res) => {
         }
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
-            res.status(400).json(
-                new ApiResponse(401, "Incorrect Password")
+           return  res.status(400).json(
+                new ApiResponse(401,null ,"Incorrect Password")
             )
         }
         const token = jwt.sign({

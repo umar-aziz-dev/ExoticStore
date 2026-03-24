@@ -62,7 +62,7 @@ export const SignupForm = [
         name: "password",
         label: "Password",
         componenettype: "Input",
-        type: "text",
+        type: "password",
         placeholder: "Min 8 Word"
     },
 ]
@@ -79,7 +79,7 @@ export const SigninForm = [
         name: "password",
         label: "Password",
         componenettype: "Input",
-        type: "text",
+        type: "password",
         placeholder: "********"
     },
 ]
@@ -202,17 +202,17 @@ export const ProductForm = [
 ];
 
 export const SoldForm = [
-    
-  {
-    name: "sold",
-    label: "Status",
-    placeholder: "Update the Status",
-    componenttype: "Select",
-    options: [
-      { label: "Avalible", value: "Avalible" },
-      { label: "Sold", value: "Sold" },
-    ],
-  },
+
+    {
+        name: "sold",
+        label: "Status",
+        placeholder: "Update the Status",
+        componenttype: "Select",
+        options: [
+            { label: "Avalible", value: "Avalible" },
+            { label: "Sold", value: "Sold" },
+        ],
+    },
     {
         name: "buyername",
         label: "Buyer Name",
@@ -241,4 +241,51 @@ export const SoldForm = [
         placeholder: "Enter Account Warrenty given"
     },
 ]
-
+export const SocialLinksOptions = [
+    {
+        name: "facebook",
+        label: "Facbook Link",
+        componenettype: "Input",
+        placeholder: "https//facebook.example"
+    },
+    {
+        name: "instagram",
+        label: "Instagram Link",
+        componenettype: "Input",
+        placeholder: "https//instagram.example"
+    },
+    {
+        name: "tiktok",
+        label: "Tiktok Link",
+        componenettype: "Input",
+        placeholder: "https//tiktok.example"
+    },
+]
+export const ContactusOptions = [
+    {
+        name: "email",
+        label: "Email",
+        componenettype: "Input",
+        placeholder: "you@example.com"
+    },
+    {
+        name: "phone",
+        label: "Phone no",
+        componenettype: "Input",
+        placeholder: "+92 123456789"
+    },
+]
+export const PolicyOptions=[
+    {
+        name: "name",
+        label: "Name",
+        componenettype: "Input",
+        placeholder: "Policy"
+    },
+    {
+        name: "description",
+        label: "Description",
+        componenttype: "Textarea",
+        placeholder: "Enter product description"
+    },
+]

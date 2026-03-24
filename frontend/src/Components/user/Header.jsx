@@ -45,11 +45,10 @@ export const UserHeader = () => {
   return (
     <header
       className={`w-full sticky top-0 z-50 transition-all duration-300
-      ${
-        scrolled
+      ${scrolled
           ? "bg-white/40 backdrop-blur-lg shadow-sm border-b border-gray-200"
           : "bg-white shadow-md"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
@@ -120,7 +119,7 @@ export const UserHeader = () => {
           {!isAuthenticated && (
             <Button
               onClick={() => navigate("/auth/signin")}
-              className="bg-[#6f2232] text-white"
+              className="bg-red-900 border rounded-full text-white"
             >
               SignIn
             </Button>
@@ -137,14 +136,16 @@ export const UserHeader = () => {
                 <User className="cursor-pointer text-gray-700 hover:text-[#6f2232] transition" />
               </DropdownMenuTrigger>
 
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-white">
                 <DropdownMenuItem
                   className="cursor-pointer"
                   onClick={() => navigate("/user/account")}
                 >
                   Account
                 </DropdownMenuItem>
-
+                <DropdownMenuItem className="cursor-pointer" onClick={() => navigate("/user/contacts")}>
+                  Contacts
+                </DropdownMenuItem>
                 <DropdownMenuItem
                   className="cursor-pointer"
                   onClick={handleLogout}

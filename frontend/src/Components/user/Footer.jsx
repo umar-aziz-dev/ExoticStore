@@ -1,9 +1,11 @@
 import { Facebook, Instagram } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import log from "../../assets/log.png";
+import { useSelector } from "react-redux";
 
 export const UserFooter = () => {
   const navigate = useNavigate();
+  const { socialLinks } = useSelector((state) => state.Social);
 
   return (
     <footer className="bg-red-900 text-white mt-12">
@@ -25,7 +27,7 @@ export const UserFooter = () => {
               <button onClick={() => navigate("/user/listing")} className="hover:underline text-left">
                 All Accounts
               </button>
-              <button onClick={() => navigate("/contact")} className="hover:underline text-left">
+              <button onClick={() => navigate("/user/contacts")} className="hover:underline text-left">
                 Contact
               </button>
             </div>
@@ -39,7 +41,7 @@ export const UserFooter = () => {
           <div className="flex gap-4">
             {/* TikTok */}
             <a
-              href="https://www.tiktok.com/@youraccount"
+              href={socialLinks?.tiktok || "#"}
               target="_blank"
               rel="noreferrer"
               className="flex flex-col items-center gap-1 hover:text-gray-200"
@@ -59,7 +61,7 @@ export const UserFooter = () => {
 
             {/* Instagram */}
             <a
-              href="https://www.instagram.com/youraccount"
+              href={socialLinks?.instagram || "#"}
               target="_blank"
               rel="noreferrer"
               className="flex flex-col items-center gap-1 hover:text-gray-200"
@@ -70,7 +72,7 @@ export const UserFooter = () => {
 
             {/* Facebook */}
             <a
-              href="https://www.facebook.com/youraccount"
+              href={socialLinks?.facebook || "#"}
               target="_blank"
               rel="noreferrer"
               className="flex flex-col items-center gap-1 hover:text-gray-200"

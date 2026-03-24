@@ -21,13 +21,15 @@ import { ResetPassword } from "./Pages/Auth/ResetPassword"
 import { SuperLayout } from "./Components/superadmin/SuperLayout"
 import { AdminCreate } from "./Pages/SuperAdmin/AdminCreate"
 import { PolicyCreation } from "./Pages/SuperAdmin/PolicyCreation"
-import { CustomerSupport } from "./Pages/SuperAdmin/CustomerSupport"
+import { Contactus } from "./Pages/SuperAdmin/Contactus"
 import { Analytics } from "./Pages/SuperAdmin/Analytics"
 import { AddProduct } from "./Pages/Seller/AddProduct"
 import { ProductDetails } from "./Pages/Seller/ProductDetails"
 import { SoldProducts } from "./Pages/Seller/SoldProducts"
 import { SoldProductView } from "./Pages/Seller/SoldProductView"
 import { SoldProductDetails } from "./Pages/Seller/SoldProductDetails"
+import { SocialLinks } from "./Pages/SuperAdmin/SocialLinks"
+import { UserContacts } from "./Pages/User/Contacts"
 
 
 function App() {
@@ -48,7 +50,7 @@ function App() {
           <Route path="review" element={<UserReview />} />
           <Route path="listing" element={<UserListing />} />
           <Route path="sellaccount" element={<UserSellAccount />} />
-          <Route path="checkout" element={<UserCheckOut />} />
+          <Route path="contacts" element={<UserContacts />} />
           <Route path="product/:id" element={<UserDescription />} />
         </Route>
         <Route path="/seller" element={<CheckAuth User={User} isAuthenticated={isAuthenticated}><SellerLayout /></CheckAuth>}>
@@ -59,12 +61,13 @@ function App() {
           <Route path="productdetails/:id" element={<ProductDetails />} />
           <Route path="soldproducts/:id" element={<SoldProducts />} />
           <Route path="soldproductview" element={<SoldProductView />} />
-           <Route path="soldproductdetails/:id" element={<SoldProductDetails />} />
+          <Route path="soldproductdetails/:id" element={<SoldProductDetails />} />
         </Route>
         <Route path="/superadmin" element={<CheckAuth User={User} isAuthenticated={isAuthenticated}><SuperLayout /></CheckAuth>}>
           <Route path="admincreate" element={<AdminCreate />} />
           <Route path="policycreation" element={<PolicyCreation />} />
-          <Route path="customersupport" element={<CustomerSupport />} />
+          <Route path="contactus" element={<Contactus />} />
+          <Route path="sociallinks" element={<SocialLinks />} />
           <Route path="analytics" element={<Analytics />} />
         </Route>
       </Routes>

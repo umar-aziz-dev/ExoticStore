@@ -14,15 +14,22 @@ export const SignUp = () => {
 
     function OnSubmit(e) {
         e.preventDefault();
-        dispatch(SignUpUser(FormData)).unwrap().then((res) => {
-            if (res.success) {
-                toast.success(res.message || "Account created Successfully")
-                navigate("/auth/signin")
-            }
-        }).catch((err) => {
-            toast.error(err.message || "Failed To Create Account")
-        })
 
+        dispatch(SignUpUser(FormData))
+            .unwrap()
+            .then((res) => {
+                // Handle success from API response
+                if (res.success) {
+                    toast.success(res.message || "Account created successfully");
+                    navigate("/auth/signin");
+                } else {
+                    toast.error(res.message || "Failed to create account");
+                }
+            })
+            .catch((err) => {
+                // err comes from rejectWithValue in thunk
+                toast.error(err.message || err.data?.message || "Failed to create account");
+            });
     }
 
     function handlesignin() {
