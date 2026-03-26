@@ -2,30 +2,40 @@
   "version": 2,
   "builds": [
     {
-      "src": "client",
-      "use": "@vercel/static-build"
+      "src": "api/index.mjs",
+      "use": "@vercel/node"
     },
     {
-      "src": "server/server.js",
-      "use": "@vercel/node"
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
     {
-      "src": "/.*",
-      "dest": "server/server.js"
+      "src": "/auth/(.*)",
+      "dest": "/api/index.mjs"
+    },
+    {
+      "src": "/superadmin/(.*)",
+      "dest": "/api/index.mjs"
+    },
+    {
+      "src": "/seller/(.*)",
+      "dest": "/api/index.mjs"
+    },
+    {
+      "src": "/user/(.*)",
+      "dest": "/api/index.mjs"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
-  ],
-  "env": {
-    "FRONTEND_URL": "localhost",
-    "PORT": "5000",
-    "DB_URI": "mongodb+srv://loomUmar1110:umar1110@cellcave.txijojc.mongodb.net/loomecom",
-    "NODE_ENV": "DEVELOPMENT",
-    "JWT_SECRET": "adlkjnasoi239sjwadkndas9q13320adnakdnad",
-    "JWT_EXPIRE": "5d",
-    "COOKIE_EXPIRE": "5",
-    "CLOUDINARY_CLOUD_NAME": "dp5wq2vcw",
-    "CLOUDINARY_API_KEY": "447928814514441",
-    "CLOUDINARY_API_SECRET": "h3IGzUxq1UXZGOQ8Ie_ZcHFrgBc"
-  }
+  ]
 }
