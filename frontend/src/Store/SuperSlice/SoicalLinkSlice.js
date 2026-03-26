@@ -13,7 +13,7 @@ export const AddSocialLinks = createAsyncThunk(
     async (formData, { rejectWithValue }) => {
         try {
             const res = await axios.post(
-                "http://localhost:5000/superadmin/sociallinks/add",
+                "http://localhost:4000/superadmin/sociallinks/add",
                 formData
             );
             return res.data;
@@ -27,7 +27,7 @@ export const fetchSocialLinks = createAsyncThunk(
     "/superadmin/sociallinks/get",
     async (_, { rejectWithValue }) => {
         try {
-            const res = await axios.get("http://localhost:5000/superadmin/sociallinks/get");
+            const res = await axios.get("http://localhost:4000/superadmin/sociallinks/get");
             return res.data;
         } catch (err) {
             return rejectWithValue(err.response?.data || { message: "Cannot Fetch Social Links" });

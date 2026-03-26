@@ -17,7 +17,7 @@ export const SignUpUser = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/signup",
+        "http://localhost:4000/auth/signup",
         formData,
         { withCredentials: true }
       );
@@ -33,7 +33,7 @@ export const SignInUser = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/signin",
+        "http://localhost:4000/auth/signin",
         formData,
         { withCredentials: true }
       );
@@ -49,7 +49,7 @@ export const SignOutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await axios.delete(
-        "http://localhost:5000/auth/signout",
+        "http://localhost:4000/auth/signout",
         { withCredentials: true }
       );
       return res.data;
@@ -64,7 +64,7 @@ export const ForgotPass = createAsyncThunk(
   async (email, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/forgotpassword",
+        "http://localhost:4000/auth/forgotpassword",
         email
       );
       return res.data;
@@ -79,7 +79,7 @@ export const ResetPass = createAsyncThunk(
   async ({ token, password }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/auth/resetpassword/${token}`,
+        `http://localhost:4000/auth/resetpassword/${token}`,
         password
       );
       return res.data;
@@ -94,7 +94,7 @@ export const SigninGoogle = createAsyncThunk(
   async (token, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/google-login",
+        "http://localhost:4000/auth/google-login",
         { token }
       );
       return res.data;
@@ -109,7 +109,7 @@ export const CheckAuth = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/auth/checkauth",
+        "http://localhost:4000/auth/checkauth",
         {
           withCredentials: true,
           headers: {

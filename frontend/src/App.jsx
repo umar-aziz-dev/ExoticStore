@@ -38,13 +38,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<CheckAuth User={User} isAuthenticated={true}><UserLayout /></CheckAuth>}>
+          <Route index element={<UserHome />} />
+          <Route path="account" element={<UserAccount />} />
+          <Route path="review" element={<UserReview />} />
+          <Route path="listing" element={<UserListing />} />
+          <Route path="sellaccount" element={<UserSellAccount />} />
+          <Route path="contacts" element={<UserContacts />} />
+          <Route path="product/:id" element={<UserDescription />} />
+        </Route>
         <Route path="/auth" element={<CheckAuth User={User} isAuthenticated={isAuthenticated}><Auth /></CheckAuth>}>
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="forgotpassword" element={<ForgotPassword />} />
           <Route path="resetpassword/:token" element={<ResetPassword />} />
         </Route>
-        <Route path="/user" element={<CheckAuth User={User} isAuthenticated={isAuthenticated}><UserLayout /></CheckAuth>}>
+        <Route path="/user" element={<CheckAuth User={User} isAuthenticated={true}><UserLayout /></CheckAuth>}>
           <Route path="home" element={<UserHome />} />
           <Route path="account" element={<UserAccount />} />
           <Route path="review" element={<UserReview />} />

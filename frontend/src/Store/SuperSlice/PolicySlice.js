@@ -13,7 +13,7 @@ export const AddPolicy = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const result = await axios.post(
-        "http://localhost:5000/superadmin/policycreation/add",
+        "http://localhost:4000/superadmin/policycreation/add",
         formData
       );
       return result.data;
@@ -29,7 +29,7 @@ export const fetchPolicy = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await axios.get(
-        "http://localhost:5000/superadmin/policycreation/get"
+        "http://localhost:4000/superadmin/policycreation/get"
       );
       return result.data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const deletePolicy = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await axios.delete(
-        `http://localhost:5000/superadmin/policycreation/delete/${id}`
+        `http://localhost:4000/superadmin/policycreation/delete/${id}`
       );
       return result.data;
     } catch (error) {
@@ -59,7 +59,7 @@ export const editPolicy = createAsyncThunk(
   async ({ formData, id }, { rejectWithValue }) => {
     try {
       const result = await axios.put(
-        `http://localhost:5000/superadmin/policycreation/edit/${id}`,
+        `http://localhost:4000/superadmin/policycreation/edit/${id}`,
         formData
       );
       return result.data;
