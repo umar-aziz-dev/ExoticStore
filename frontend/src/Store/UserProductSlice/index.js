@@ -11,14 +11,14 @@ const initialState = {
 
 export const fetchSingleProduct = createAsyncThunk("/user/listing/product/get",
     async (id) => {
-        const result = await axios.get(`http://localhost:4000/user/listing/product/get/${id}`);
+        const result = await axios.get(`http://localhost:4000/api/user/listing/product/get/${id}`);
         return result.data;
     }
 )
 
 export const fetchAllProduct = createAsyncThunk("/user/listing/get",
     async () => {
-        const result = await axios.get("http://localhost:4000/user/listing/get")
+        const result = await axios.get("http://localhost:4000/api/user/listing/get")
         return result.data;
     }
 )

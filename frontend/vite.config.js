@@ -5,10 +5,12 @@ import path from "path"
 export default defineConfig({
   plugins: [react()],
   
-  base: './', // ✅ ensures relative paths for Vercel deployment
 
   server: {
-    port: 5173
+    port: 5173,
+    proxy:{
+      "/api":"http://localhost:4000"
+    }
   },
   
   resolve: {

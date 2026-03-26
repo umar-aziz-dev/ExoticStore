@@ -17,7 +17,7 @@ export const AddProducts = createAsyncThunk(
     async (formdata, { rejectWithValue }) => {
         try {
             const result = await axios.post(
-                "http://localhost:4000/seller/product/add",
+                "http://localhost:4000/api/seller/product/add",
                 formdata
             );
             return result.data;
@@ -33,7 +33,7 @@ export const editProduct = createAsyncThunk(
     async ({ id, formdata }, { rejectWithValue }) => {
         try {
             const result = await axios.put(
-                `http://localhost:4000/seller/product/edit/${id}`,
+                `http://localhost:4000/api/seller/product/edit/${id}`,
                 formdata
             );
             return result.data;
@@ -48,7 +48,7 @@ export const fetchProduct = createAsyncThunk(
     "/seller/product/get",
     async (_, { rejectWithValue }) => {
         try {
-            const result = await axios.get("http://localhost:4000/seller/product/get");
+            const result = await axios.get("http://localhost:4000/api/seller/product/get");
             return result.data;
         } catch (err) {
             return rejectWithValue(err.response?.data || { message: "Cannot fetch products" });
@@ -62,7 +62,7 @@ export const fetchSingleProduct = createAsyncThunk(
     async (id, { rejectWithValue }) => {
         try {
             const result = await axios.get(
-                `http://localhost:4000/seller/product/fetch/${id}`
+                `http://localhost:4000/api/seller/product/fetch/${id}`
             );
             return result.data;
         } catch (err) {
@@ -77,7 +77,7 @@ export const deleteProduct = createAsyncThunk(
     async (id, { rejectWithValue }) => {
         try {
             const result = await axios.delete(
-                `http://localhost:4000/seller/product/delete/${id}`
+                `http://localhost:4000/api/seller/product/delete/${id}`
             );
             return result.data;
         } catch (err) {
@@ -92,7 +92,7 @@ export const UpdateStatus = createAsyncThunk(
     async ({ id, formdata }, { rejectWithValue }) => {
         try {
             const result = await axios.post(
-                `http://localhost:4000/seller/soldproducts/${id}`,
+                `http://localhost:4000/api/seller/soldproducts/${id}`,
                 formdata
             );
             return result.data;
@@ -108,7 +108,7 @@ export const fetchSoldProducts = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const result = await axios.get(
-                "http://localhost:4000/seller/soldproducts/soldproductview/get"
+                "http://localhost:4000/api/seller/soldproducts/soldproductview/get"
             );
             return result.data;
         } catch (err) {
@@ -123,7 +123,7 @@ export const fetchSingleSoldProduct = createAsyncThunk(
     async (id, { rejectWithValue }) => {
         try {
             const result = await axios.get(
-                `http://localhost:4000/seller/soldproducts/soldproductdetails/get/${id}`
+                `http://localhost:4000/api/seller/soldproducts/soldproductdetails/get/${id}`
             );
             return result.data;
         } catch (err) {

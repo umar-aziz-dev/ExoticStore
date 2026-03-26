@@ -16,7 +16,7 @@ export const CreateAdmin = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/superadmin/admincreate/add",
+        "http://localhost:4000/api/superadmin/admincreate/add",
         formData
       );
       return res.data;
@@ -30,7 +30,7 @@ export const FetchAdmin = createAsyncThunk(
   "/superadmin/admincreate/get",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get("http://localhost:4000/superadmin/admincreate/get");
+      const res = await axios.get("http://localhost:4000/api/superadmin/admincreate/get");
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data || { message: "Cannot Fetch Admins" });
@@ -42,7 +42,7 @@ export const DeleteAdmin = createAsyncThunk(
   "/superadmin/admincreate/delete",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await axios.post(`http://localhost:4000/superadmin/admincreate/delete/${id}`);
+      const res = await axios.post(`http://localhost:4000/api/superadmin/admincreate/delete/${id}`);
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data || { message: "Cannot Delete Admin" });

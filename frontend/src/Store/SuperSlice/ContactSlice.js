@@ -11,7 +11,7 @@ export const AddContact = createAsyncThunk(
     "/superadmin/contactus/add",
     async (formData, { rejectWithValue }) => {
         try {
-            const res = await axios.post("http://localhost:4000/superadmin/contactus/add", formData);
+            const res = await axios.post("http://localhost:4000/api/superadmin/contactus/add", formData);
             return res.data;
         } catch (err) {
             return rejectWithValue(err.response?.data || { message: "Cannot Add Contact" });
@@ -23,7 +23,7 @@ export const fetchContact = createAsyncThunk(
     "/superadmin/contactus/get",
     async (_, { rejectWithValue }) => {
         try {
-            const res = await axios.get("http://localhost:4000/superadmin/contactus/get");
+            const res = await axios.get("http://localhost:4000/api/superadmin/contactus/get");
             return res.data;
         } catch (err) {
             return rejectWithValue(err.response?.data || { message: "Cannot Fetch Contact" });
@@ -35,7 +35,7 @@ export const deleteContact = createAsyncThunk(
     "/superadmin/contactus/delete",
     async (_, { rejectWithValue }) => {
         try {
-            const res = await axios.delete("http://localhost:4000/superadmin/contactus/delete");
+            const res = await axios.delete("http://localhost:4000/api/superadmin/contactus/delete");
             return res.data;
         } catch (err) {
             return rejectWithValue(err.response?.data || { message: "Cannot Delete Contact" });

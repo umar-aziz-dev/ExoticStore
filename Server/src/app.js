@@ -31,15 +31,15 @@ app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, "../../frontend/dist")));
 
 // your routes
-app.use("/auth", userRouter);
-app.use("/superadmin/admincreate", superRouter);
-app.use("/seller/product", productRouter);
-app.use("/seller/soldproducts", soldRouter);
-app.use("/seller/api", uploadRouter);
-app.use("/user/listing", userproductRouter);
-app.use("/superadmin/sociallinks", socialRouter);
-app.use("/superadmin/contactus", contactRouter);
-app.use("/superadmin/policycreation", policyRouter);
+app.use("/api/auth", userRouter);
+app.use("/api/superadmin/admincreate", superRouter);
+app.use("/api/seller/product", productRouter);
+app.use("/api/seller/soldproducts", soldRouter);
+app.use("/api/seller/api", uploadRouter);
+app.use("/api/user/listing", userproductRouter);
+app.use("/api/superadmin/sociallinks", socialRouter);
+app.use("/api/superadmin/contactus", contactRouter);
+app.use("/api/superadmin/policycreation", policyRouter);
 
 // SPA fallback route - must come last
 app.get(/.+/, (req, res) => {
