@@ -54,7 +54,7 @@ const UploadOnCloudinary = async () => {
     imageview.forEach((file) => data.append("images", file));
 
     const result = await axios.post(
-      "http://localhost:4000/api/seller/api/upload", // must match backend
+      "/api/seller/api/upload", // must match backend
       data
     );
 

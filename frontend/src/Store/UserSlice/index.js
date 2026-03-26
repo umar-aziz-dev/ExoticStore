@@ -17,7 +17,7 @@ export const SignUpUser = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/auth/signup",
+        "/api/auth/signup",
         formData,
         { withCredentials: true }
       );
@@ -33,7 +33,7 @@ export const SignInUser = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/auth/signin",
+        "/api/auth/signin",
         formData,
         { withCredentials: true }
       );
@@ -49,7 +49,7 @@ export const SignOutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await axios.delete(
-        "http://localhost:4000/api/auth/signout",
+        "/api/auth/signout",
         { withCredentials: true }
       );
       return res.data;
@@ -64,7 +64,7 @@ export const ForgotPass = createAsyncThunk(
   async (email, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/auth/forgotpassword",
+        "/api/auth/forgotpassword",
         email
       );
       return res.data;
@@ -79,7 +79,7 @@ export const ResetPass = createAsyncThunk(
   async ({ token, password }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `http://localhost:4000/api/auth/resetpassword/${token}`,
+        `/api/auth/resetpassword/${token}`,
         password
       );
       return res.data;
@@ -94,7 +94,7 @@ export const SigninGoogle = createAsyncThunk(
   async (token, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/auth/google-login",
+        "/api/auth/google-login",
         { token }
       );
       return res.data;
@@ -109,7 +109,7 @@ export const CheckAuth = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await axios.get(
-        "http://localhost:4000/api/auth/checkauth",
+        "/api/auth/checkauth",
         {
           withCredentials: true,
           headers: {
