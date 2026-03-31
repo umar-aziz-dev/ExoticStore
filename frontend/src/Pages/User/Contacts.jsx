@@ -1,8 +1,13 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchContact } from "@/Store/SuperSlice/ContactSlice";
+import { useEffect } from "react";
 
 export const UserContacts = () => {
     const { contactInfo, isloading } = useSelector((state) => state.Contact);
-
+    const dispatch = useDispatch();
+useEffect(()=>{
+    dispatch(fetchContact())
+},[dispatch])
     // Loading skeleton
     if (isloading) {
         return (

@@ -27,56 +27,58 @@ export const UserHeader = () => {
     setOpen(false);
   }
 
-  // Detect Scroll
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
       className={`w-full sticky top-0 z-50 transition-all duration-300
-      ${scrolled
-          ? "bg-white/40 backdrop-blur-lg shadow-sm border-b border-gray-200"
-          : "bg-white shadow-md"
-        }`}
+      ${
+        scrolled
+          ? "bg-white/70 backdrop-blur-lg shadow-sm border-b border-gray-200"
+          : "bg-white shadow-sm"
+      }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-
+      <div
+        className={`max-w-7xl mx-auto flex items-center justify-between px-6 transition-all duration-300
+        ${scrolled ? "py-1" : "py-2"}`}
+      >
         {/* Logo */}
         <div
-          className="cursor-pointer hover:opacity-90 transition-opacity duration-300"
-          onClick={() => navigate("/superadmin/analytics")}
+          className="cursor-pointer hover:opacity-90 transition"
+          onClick={() => navigate("/")}
         >
           <img
             src={log}
             alt="ExoticStore Logo"
-            className="h-10 sm:h-12 md:h-12 lg:h-12 xl:h-16 w-auto object-contain transition-all duration-300"
+            className={`w-auto object-contain transition-all duration-300
+            ${scrolled ? "h-8" : "h-10 md:h-11"}`}
           />
         </div>
 
         {/* Mobile Menu Icon */}
-        <div onClick={() => setOpen(true)} className="md:hidden cursor-pointer">
-          <Menu />
+        <div
+          onClick={() => setOpen(true)}
+          className="md:hidden cursor-pointer"
+        >
+          <Menu size={22} />
         </div>
 
-        {/* Mobile Sheet Menu */}
+        {/* Mobile Sheet */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetContent className="bg-white w-64" side="left">
             <SheetHeader>
               <SheetTitle>Menu</SheetTitle>
             </SheetHeader>
 
-            <nav className="flex flex-col mt-8 gap-6">
+            <nav className="flex flex-col mt-6 gap-5">
               {NavbarIconforsm.map((items) => (
                 <p
                   key={items.name}
@@ -91,22 +93,37 @@ export const UserHeader = () => {
               ))}
             </nav>
 
-            <p
-              onClick={handleLogout}
-              className="mt-5 text-gray-700 font-medium cursor-pointer hover:text-[#6f2232] transition"
-            >
-              Logout
-            </p>
+            {/* ✅ Mobile Auth Button */}
+            <div className="mt-6">
+              {isAuthenticated ? (
+                <Button
+                  onClick={handleLogout}
+                  className="w-full bg-red-900 text-white rounded-full"
+                >
+                  Logout
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    navigate("/auth/signin");
+                    setOpen(false);
+                  }}
+                  className="w-full bg-red-900 text-white rounded-full"
+                >
+                  SignIn
+                </Button>
+              )}
+            </div>
           </SheetContent>
         </Sheet>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-5">
           {NavbarIcons.map((items) => (
             <p
               key={items.name}
               onClick={() => navigate(items.path)}
-              className="text-gray-700 font-medium cursor-pointer hover:text-[#6f2232] transition"
+              className="text-gray-700 text-sm font-medium cursor-pointer hover:text-[#6f2232] transition"
             >
               {items.label}
             </p>
@@ -114,18 +131,18 @@ export const UserHeader = () => {
         </nav>
 
         {/* Desktop Icons */}
-        <div className="hidden md:flex items-center gap-5">
-
+        <div className="hidden md:flex items-center gap-4">
           {!isAuthenticated && (
             <Button
               onClick={() => navigate("/auth/signin")}
-              className="bg-red-900 border rounded-full text-white"
+              className="bg-red-900 text-white rounded-full px-4 py-1 text-sm"
             >
               SignIn
             </Button>
           )}
 
           <ShoppingCart
+            size={20}
             onClick={() => navigate("/shoppingView/cart")}
             className="cursor-pointer text-gray-700 hover:text-[#6f2232] transition"
           />
@@ -133,19 +150,27 @@ export const UserHeader = () => {
           {isAuthenticated && (
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <User className="cursor-pointer text-gray-700 hover:text-[#6f2232] transition" />
+                <User
+                  size={20}
+                  className="cursor-pointer text-gray-700 hover:text-[#6f2232] transition"
+                />
               </DropdownMenuTrigger>
 
               <DropdownMenuContent className="bg-white">
                 <DropdownMenuItem
                   className="cursor-pointer"
-                  onClick={() => navigate("/user/account")}
+                  onClick={() => navigate("/account")}
                 >
                   Account
                 </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer" onClick={() => navigate("/user/contacts")}>
+
+                <DropdownMenuItem
+                  className="cursor-pointer"
+                  onClick={() => navigate("/contact")}
+                >
                   Contacts
                 </DropdownMenuItem>
+
                 <DropdownMenuItem
                   className="cursor-pointer"
                   onClick={handleLogout}
@@ -155,7 +180,6 @@ export const UserHeader = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           )}
-
         </div>
       </div>
     </header>

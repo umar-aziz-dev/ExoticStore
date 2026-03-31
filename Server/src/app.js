@@ -12,6 +12,8 @@ import userproductRouter from "./Routes/User.Routes/UserProduct.Routes.js"
 import socialRouter from "./Routes/SuperAdmin.Routes/SocialLinks.Routes.js"
 import contactRouter from "./Routes/SuperAdmin.Routes/Contact.Routes.js"
 import policyRouter from "./Routes/SuperAdmin.Routes/Policy.Routes.js"
+import userPolicy from "./Routes/User.Routes/UserPolicy.Routes.js"
+import superProductRouter from "./Routes/SuperAdmin.Routes/Product.Routes.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,8 +21,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 app.use(cors({
-  origin:"http://localhost:5173",
-  credentials:true
+  origin: "http://localhost:5173",
+  credentials: true
 }));
 
 app.use(express.json());
@@ -40,6 +42,8 @@ app.use("/api/user/listing", userproductRouter);
 app.use("/api/superadmin/sociallinks", socialRouter);
 app.use("/api/superadmin/contactus", contactRouter);
 app.use("/api/superadmin/policycreation", policyRouter);
+app.use("/api/policy", userPolicy);
+app.use("/api/superadmin/products", superProductRouter);
 
 // SPA fallback route - must come last
 app.get(/.+/, (req, res) => {

@@ -21,16 +21,25 @@ export const UserFooter = () => {
 
             {/* Navigation Links */}
             <div className="flex flex-col gap-1 text-lg font-light">
-              <button onClick={() => navigate("/user/home")} className="hover:underline text-left">
+              <button onClick={() => navigate("/")} className="hover:underline text-left">
                 Home
               </button>
-              <button onClick={() => navigate("/user/listing")} className="hover:underline text-left">
+              <button onClick={() => navigate("/listing")} className="hover:underline text-left">
                 All Accounts
               </button>
-              <button onClick={() => navigate("/user/contacts")} className="hover:underline text-left">
+              <button onClick={() => navigate("/contact")} className="hover:underline text-left">
                 Contact
               </button>
             </div>
+
+          </div>
+          <div className="flex flex-col gap-1 mt-16 text-lg font-light">
+            <button onClick={() => navigate("/policy") } className="hover:underline text-left"
+            >Privacy Policies</button>
+            <button onClick={() => navigate("/account")} className="hover:underline text-left"
+            >
+              Account
+            </button>
           </div>
 
         </div>

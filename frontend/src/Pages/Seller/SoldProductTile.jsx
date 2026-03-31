@@ -62,7 +62,7 @@ export const SoldProductTile = ({ Product }) => {
             onClick={() =>
               navigate(`/seller/soldproductdetails/${Product._id}`)
             }
-            className="w-full"
+            className="w-full text-white bg-red-900 hover:bg-red-800"
           >
             View Details
           </Button>

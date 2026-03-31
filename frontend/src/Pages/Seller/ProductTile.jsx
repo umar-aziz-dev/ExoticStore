@@ -58,38 +58,39 @@ export const ProductTile = ({ Product, onDelete, onEdit }) => {
         {/* Buttons */}
         <div className="grid grid-cols-2 gap-2 pt-2">
 
+          {/* View */}
           <Button
             onClick={() => navigate(`/seller/productdetails/${Product._id}`)}
-            className="w-full"
+            className="w-full bg-red-900 hover:bg-red-800 text-white rounded-lg transition"
           >
             View
           </Button>
 
+          {/* Delete */}
           <Button
             onClick={() => onDelete(Product._id)}
-            variant="destructive"
-            className="w-full"
+            className="w-full bg-red-700 hover:bg-red-800 text-white rounded-lg transition"
           >
             Delete
           </Button>
 
+          {/* Edit */}
           <Button
             onClick={() => navigate("/seller/addproduct", { state: { product: Product } })}
-            variant="secondary"
-            className="w-full"
+            className="w-full bg-red-100 text-red-900 hover:bg-red-200 rounded-lg transition"
           >
             Edit
           </Button>
 
+          {/* Sold */}
           <Button
             onClick={() => navigate(`/seller/soldproducts/${Product._id}`)}
-            className="w-full bg-yellow-500 hover:bg-yellow-600"
+            className="w-full bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition"
           >
             Sold
           </Button>
 
         </div>
-
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ export const ProductTile = ({ Product }) => {
         {/* Buttons */}
         <div className="pt-2">
           <Button
-            onClick={() => navigate(`/user/product/${Product._id}`)}
+            onClick={() => navigate(`/product/${Product._id}`)}
             className="w-full bg-red-600 text-white"
           >
             View Details

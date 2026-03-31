@@ -2,39 +2,44 @@ export const NavbarIcons = [
     {
         name: "home",
         label: "Home",
-        path: "/user/home"
+        path: "/"
     },
     {
         name: "allaccounts",
         label: "All Accounts",
-        path: "/user/listing"
+        path: "/listing"
     },
     {
         name: "sellaccount",
         label: "Sell Account",
-        path: "/user/sellaccount"
+        path: "/sellaccount"
     }
 ]
 export const NavbarIconforsm = [
     {
         name: "home",
         label: "Home",
-        path: "/user/home"
+        path: "/"
     },
     {
         name: "allaccounts",
         label: "All Accounts",
-        path: "/user/listing"
+        path: "/listing"
     },
     {
         name: "contact",
         label: "Contact",
-        path: "/user/contact"
+        path: "/contact"
     },
     {
         name: "account",
         label: "Account",
-        path: "/user/account"
+        path: "/account"
+    },
+    {
+        name:"policy",
+        label:"Policies",
+        path:"/policy"
     }
 ]
 export const SignupForm = [

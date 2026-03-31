@@ -6,29 +6,45 @@ import { Separator } from "@/Components/ui/separator";
 import { useNavigate } from "react-router-dom";
 
 export const SoldProductView = () => {
-    const { soldProduct } = useSelector((state) => state.Product);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  
+  // ✅ SAFE: always fallback to empty array
+  const { soldProduct = [] } = useSelector((state) => state.Product);
 
-    useEffect(() => {
-        dispatch(fetchSoldProducts());
-    }, [dispatch]);
+  // ================= FETCH DATA =================
+  useEffect(() => {
+    dispatch(fetchSoldProducts());
+  }, [dispatch]);
 
-    return (
-        <div>
-            <h1 className="flex justify-center p-4 m-4 font-semibold text-xl">
-                Sold Accounts
-            </h1>
+  // ================= DEBUG =================
+  console.log("soldProduct:", soldProduct);
 
-            <Separator className="bg-black mx-4" />
+  return (
+    <div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-                {soldProduct.map((Product) => (
-                    <SoldProductTile  key={Product._id} Product={Product} />
-                ))}
-            </div>
-        </div>
-    );
+      {/* TITLE */}
+      <h1 className="flex justify-center items-center text-red-900 font-semibold text-2xl md:text-3xl mt-6 mb-4">
+        <span className="px-4 z-10">Sold Accounts</span>
+      </h1>
+
+      <Separator className="bg-black px-4" />
+
+      {/* GRID */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+
+        {/* ✅ SAFE CHECK BEFORE MAP */}
+        {Array.isArray(soldProduct) && soldProduct.length > 0 ? (
+          soldProduct.map((Product) => (
+            <SoldProductTile key={Product._id} Product={Product} />
+          ))
+        ) : (
+          <p className="col-span-full text-center text-gray-500">
+            No sold products found
+          </p>
+        )}
+
+      </div>
+    </div>
+  );
 };

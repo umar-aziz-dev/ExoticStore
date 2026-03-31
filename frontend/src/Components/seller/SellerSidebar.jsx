@@ -3,10 +3,12 @@ import { ChartColumn, UserPen, MailCheck, Columns4, LogOut, User } from "lucide-
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 import { useDispatch } from "react-redux";
 import { SignOutUser } from "@/Store/UserSlice";
+import { CheckCircle } from "lucide-react";
 
 const Superadminoptions = [
   { name: "dashboard", label: "Seller Dashboard", path: "/seller/dashboard", icon: <ChartColumn /> },
   { name: "product", label: "Add Account", path: "/seller/product", icon: <User/> },
+  {name:"Soldaccounts",label:"View Sold Accounts",path:"/seller/soldproductview",icon:<CheckCircle/>}
 ];
 
 const SidebarItems = ({ navigate }) => (
@@ -15,7 +17,7 @@ const SidebarItems = ({ navigate }) => (
       <div
         key={item.name}
         onClick={() => navigate(item.path)}
-        className="flex items-center gap-3 text-white p-3 rounded-md cursor-pointer hover:bg-[#7f2a42] transition"
+        className="flex items-center gap-3 text-white p-3 rounded-md cursor-pointer hover:bg-red-800 transition"
       >
         <span className="w-5 h-5">{item.icon}</span>
         <span>{item.label}</span>
@@ -35,15 +37,15 @@ export const SellerSidebar = ({ open, setopen }) => {
   return (
     <div>
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex flex-col gap-4 bg-[#6f2232] w-64 h-screen p-4">
+      <div className="hidden md:flex flex-col gap-4 bg-red-900  w-64 h-screen p-4">
         <SidebarItems navigate={navigate} />
       </div>
 
       {/* Mobile Sheet */}
       <Sheet open={open} onOpenChange={setopen}>
-        <SheetContent side="left" className="flex flex-col gap-2 text-white bg-[#6f2232] w-60 min-h-screen p-4">
+        <SheetContent side="left" className="flex flex-col gap-2 text-white bg-red-900 w-60 min-h-screen p-4">
           <SheetHeader>
-            <SheetTitle className="p-4 mt-4">SuperAdmin Panel</SheetTitle>
+            <SheetTitle className="p-4 mt-4">Seller Panel</SheetTitle>
           </SheetHeader>
 
           {/* Menu Items */}
@@ -54,7 +56,7 @@ export const SellerSidebar = ({ open, setopen }) => {
                 navigate(item.path);
                 setopen(false);
               }}
-              className="flex items-center gap-3 text-white p-3 rounded-md cursor-pointer hover:bg-[#7f2a42] transition"
+              className="flex items-center gap-3 text-white p-3 rounded-md cursor-pointer hover:bg-red-800 transition"
             >
               <span className="w-5 h-5">{item.icon}</span>
               <span>{item.label}</span>

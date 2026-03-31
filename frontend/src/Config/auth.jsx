@@ -4,25 +4,24 @@ export default function CheckAuth({ isAuthenticated, User, children }) {
   const location = useLocation();
   const path = location.pathname;
 
-  const publicRoutes = [
-    "/user/home",
-    "/auth/signin",
-    "/auth/signup",
-    "/auth/forgotpassword",
-    "/auth/resetpassword/:token",
-  ];
+  // ✅ PUBLIC ROUTES (allow without login)
+  const isPublicRoute =
+    path === "/" ||                     // home
+    path === "/listing" ||
+    path === "/policy" ||
+    path === "/review" ||
+    path.startsWith("/auth");           // all auth routes
 
   // 🚫 NOT LOGGED IN
   if (!isAuthenticated) {
-    if (publicRoutes.includes(path)) {
+    if (isPublicRoute) {
       return <>{children}</>;
     }
-
     return <Navigate to="/auth/signin" replace />;
   }
 
   // 🚫 Logged in user visiting auth pages
-  if (path.includes("/signin") || path.includes("/signup")) {
+  if (path.startsWith("/auth")) {
 
     if (User?.role === "superadmin") {
       return <Navigate to="/superadmin/analytics" replace />;
@@ -32,34 +31,28 @@ export default function CheckAuth({ isAuthenticated, User, children }) {
       return <Navigate to="/seller/dashboard" replace />;
     }
 
-    return <Navigate to="/user/home" replace />;
+    return <Navigate to="/" replace />; // ✅ FIXED (no /user/home)
   }
 
   // 🔒 SUPER ADMIN PROTECTION
   if (User?.role === "superadmin") {
-
-    if (path.startsWith("/user") || path.startsWith("/seller")) {
+    if (path.startsWith("/seller")) {
       return <Navigate to="/superadmin/analytics" replace />;
     }
-
   }
 
-  // 🔒 ADMIN PROTECTION
+  // 🔒 SELLER PROTECTION
   if (User?.role === "seller") {
-
-    if (path.startsWith("/user") || path.startsWith("/superadmin")) {
+    if (path.startsWith("/superadmin")) {
       return <Navigate to="/seller/dashboard" replace />;
     }
-
   }
 
   // 🔒 USER PROTECTION
   if (User?.role === "user") {
-
     if (path.startsWith("/seller") || path.startsWith("/superadmin")) {
-      return <Navigate to="/user/home" replace />;
+      return <Navigate to="/" replace />;
     }
-
   }
 
   return <>{children}</>;

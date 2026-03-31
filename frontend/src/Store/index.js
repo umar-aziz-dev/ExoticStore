@@ -6,6 +6,8 @@ import userproductReducer from "./UserProductSlice/index.js"
 import socialReducer from "./SuperSlice/SoicalLinkSlice.js"
 import policyReducer from "./SuperSlice/PolicySlice.js"
 import contactReducer from "./SuperSlice/ContactSlice.js"
+import userPolicyReducer from "./UserSlice/UserPolicySlice.js"
+import superproductReducer from "./SuperSlice/ProductSlice.js"
 
 const Store = configureStore(
     {
@@ -17,6 +19,8 @@ const Store = configureStore(
             Social:socialReducer,
             Policy:policyReducer,
             Contact:contactReducer,
+            userPolicy:userPolicyReducer,
+            SuperProduct:superproductReducer,
         }
     }
 )

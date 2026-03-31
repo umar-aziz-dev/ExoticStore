@@ -5,11 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { ProductTile } from "./ProductTile";
+import { useEffect } from "react";
+import { fetchAllProduct } from "@/Store/UserProductSlice";
 
 export const UserHome = () => {
   const navigate = useNavigate();
   const { productList, isloading } = useSelector((state) => state.UserProduct);
   const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(fetchAllProduct())
+  },[dispatch])
   const featuredProducts = [...productList]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 4);
@@ -43,7 +48,7 @@ export const UserHome = () => {
 
         {/* Button */}
         <Button
-          onClick={() => navigate("/user/listing")}
+          onClick={() => navigate("/listing")}
           className="bg-red-600 text-white w-fit px-6 flex items-center gap-2 hover:bg-red-700">
           View Accounts
           <ArrowRight size={18} />
